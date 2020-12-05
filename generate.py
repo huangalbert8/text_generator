@@ -23,7 +23,7 @@ for ext in range(settings["NUM_OF_TEXTFILES"]):
     name = f"{settings['TEXTFILE_PREFIX']}_{ext}.txt"
     with open(f"{DIRECTORY_NAME}/{name}", "w") as writeFile:
         text = [" ".join(random.choices(word_set, k=settings["WORDS_PER_LINE"])) for l in range(settings["NUM_OF_LINES"])]
-        FILE_WORDS[name] = Counter((" ".join(text)).split())
+        FILE_WORDS[name[:-4]] = Counter((" ".join(text)).split())
         writeFile.write("\n".join(text))
 
 # create output file
