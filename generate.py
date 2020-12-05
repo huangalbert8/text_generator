@@ -16,7 +16,6 @@ with open("words.txt") as words:
 
 TIMESTAMP = int(time.time())
 DIRECTORY_NAME = f"./{settings['DIRECTORY_NAME']}_{TIMESTAMP}"
-DIRECTORY_NAME = f"./{settings['DIRECTORY_NAME']}_{1}"
 
 os.makedirs(DIRECTORY_NAME, exist_ok=True)
 # create files
@@ -39,4 +38,11 @@ with open(f"output_{TIMESTAMP}.csv", "w") as output:
     output.write(f",{','.join(FILE_WORDS.keys())},total\n")
     # lines
     result = [f"{k},{','.join([str(num) for num in v])}" for k,v in OUT.items()]
+    output.write("\n".join(result))
+
+with open(f"output_{TIMESTAMP}.txt", "w") as output:
+    # header
+    output.write(f"{''.ljust(MAX_WORD_SIZE)} {' '.join([name.ljust(MAX_COL_SIZE) for name in FILE_WORDS.keys()])} {'total'.ljust(MAX_COL_SIZE)}\n")
+    # lines
+    result = [f"{str(k).ljust(MAX_WORD_SIZE)} {' '.join([str(num).ljust(MAX_COL_SIZE) for num in v])}" for k,v in OUT.items()]
     output.write("\n".join(result))
