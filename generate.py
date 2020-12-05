@@ -20,7 +20,7 @@ DIRECTORY_NAME = f"./{settings['DIRECTORY_NAME']}_{TIMESTAMP}"
 os.makedirs(DIRECTORY_NAME, exist_ok=True)
 # create files
 for ext in range(settings["NUM_OF_TEXTFILES"]):
-    name = f"{settings['TEXTFILE_PREFIX']}_{ext}"
+    name = f"{settings['TEXTFILE_PREFIX']}_{ext}.txt"
     with open(f"{DIRECTORY_NAME}/{name}", "w") as writeFile:
         text = [" ".join(random.choices(word_set, k=settings["WORDS_PER_LINE"])) for l in range(settings["NUM_OF_LINES"])]
         FILE_WORDS[name] = Counter((" ".join(text)).split())
