@@ -18,9 +18,9 @@ TIMESTAMP = int(time.time())
 DIRECTORY_NAME = f"./{settings['DIRECTORY_NAME']}_{TIMESTAMP}"
 
 os.makedirs(DIRECTORY_NAME, exist_ok=True)
-# create files
+EXT_ZERO_PAD = len(str(settings["NUM_OF_TEXTFILES"]))
 for ext in range(settings["NUM_OF_TEXTFILES"]):
-    name = f"{settings['TEXTFILE_PREFIX']}_{ext}.txt"
+    name = f"{settings['TEXTFILE_PREFIX']}_{str(ext).rjust(EXT_ZERO_PAD, '0')}.txt"
     with open(f"{DIRECTORY_NAME}/{name}", "w") as writeFile:
         text = [" ".join(random.choices(word_set, k=settings["WORDS_PER_LINE"])) for l in range(settings["NUM_OF_LINES"])]
         FILE_WORDS[name[:-4]] = Counter((" ".join(text)).split())
