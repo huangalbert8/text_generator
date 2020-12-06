@@ -27,7 +27,8 @@ for ext in range(settings["NUM_OF_TEXTFILES"]):
         writeFile.write("\n".join(text))
 
 # create output file
-OUT = {word:[count[word] for name, count in FILE_WORDS.items()] for word in sorted(word_set)}
+WORD_SET_IN_FILES = set.union(*[set(words) for words in FILE_WORDS.values()])
+OUT = {word:[count[word] for name, count in FILE_WORDS.items()] for word in sorted(WORD_SET_IN_FILES)}
 MAX_WORD_SIZE = len(max(word_set, key=lambda x: len(x)))
 MAX_COL_SIZE = max(len(max(FILE_WORDS.keys(), key=lambda x: len(x))) + settings["OUTPUT_COLUMN_BUFFER"], settings["OUTPUT_COLUMN_WIDTH_MIN"])
 # add the total
